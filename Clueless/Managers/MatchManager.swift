@@ -14,7 +14,7 @@ class MatchManager: NSObject, ObservableObject {
     @Published var authState = AuthState.authenticating
     
     @Published var isTimeKeeper = false
-    @Published var remainingTime = 10 {
+    @Published var remainingTime = 60 {
         willSet {
             if isTimeKeeper { sendString("timer:\(newValue)") }
         }
@@ -24,6 +24,9 @@ class MatchManager: NSObject, ObservableObject {
     var players: [GKPlayer]?
     var playerIdx = 0
     var localPlayer = GKLocalPlayer.local
+    
+    var deductors: [String] = []
+    var kickers: [String] = []
     
     var playerUUIDKey = UUID().uuidString
     
@@ -87,7 +90,7 @@ class MatchManager: NSObject, ObservableObject {
         DispatchQueue.main.async { [self] in
             isGameOver = false
             inGame = false
-            remainingTime = 10
+            remainingTime = 60
         }
         
         isTimeKeeper = false
@@ -96,6 +99,26 @@ class MatchManager: NSObject, ObservableObject {
         players = nil
         playerIdx = 0
         playerUUIDKey = UUID().uuidString
+    }
+    
+    func toggleDeductor() {
+        if (deductors.contains(localPlayer.gamePlayerID)) {
+            let index = deductors.firstIndex(of: localPlayer.gamePlayerID)
+            deductors.remove(at: index!)
+        } else {
+            deductors.insert(localPlayer.gamePlayerID, at: 0)
+        }
+        sendString("deduct:\(localPlayer.gamePlayerID)")
+    }
+    
+    func toggleKicker() {
+        if (kickers.contains(localPlayer.gamePlayerID)) {
+            let index = kickers.firstIndex(of: localPlayer.gamePlayerID)
+            kickers.remove(at: index!)
+        } else {
+            kickers.insert(localPlayer.gamePlayerID, at: 0)
+        }
+        sendString("kick:\(localPlayer.gamePlayerID)")
     }
     
     func receivedString(_ message: String) {
@@ -117,6 +140,22 @@ class MatchManager: NSObject, ObservableObject {
             
             if isTimeKeeper {
                 countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+            }
+            
+        case "deduct":
+            if (deductors.contains(parameter)) {
+                let index = deductors.firstIndex(of: parameter)
+                deductors.remove(at: index!)
+            } else {
+                deductors.insert(parameter, at: 0)
+            }
+            
+        case "kick":
+            if (kickers.contains(parameter)) {
+                let index = kickers.firstIndex(of: parameter)
+                kickers.remove(at: index!)
+            } else {
+                kickers.insert(parameter, at: 0)
             }
             
         default:

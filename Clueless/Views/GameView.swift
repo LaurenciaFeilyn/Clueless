@@ -16,23 +16,55 @@ struct GameView: View {
         VStack {
             Spacer()
             
-            Text("Player List:")
-            
-            Text(matchManager.localPlayer.displayName)
-                .padding(.bottom, 2)
-                .foregroundStyle(Color(UIColor.systemCyan))
-            
-            
-            ForEach(matchManager.players ?? [], id: \.self) { player in
-                Text(player.displayName)
-                    .padding(.bottom, 2)
-            }
-            
-            Spacer()
-            
             Text("Time Left : \(matchManager.remainingTime) seconds..")
                 .font(.largeTitle)
                 .padding()
+            
+            Spacer()
+            
+            HStack {
+                Spacer()
+                
+                VStack {
+                    Button {
+                        matchManager.toggleDeductor()
+                    } label: {
+                        HStack{
+                            Image(systemName: "scope")
+                                .padding(.top, 2)
+                            Text("Deduct Killer")
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(Color(UIColor.systemBrown))
+                    
+                    Text("\(matchManager.deductors.count) of 4")
+                        .font(.caption)
+                        .foregroundStyle(Color(UIColor.secondaryLabel))
+                }
+                
+                Spacer()
+                
+                VStack {
+                    Button {
+                        matchManager.toggleKicker()
+                    } label: {
+                        HStack{
+                            Image(systemName: "figure.kickboxing")
+                                .padding(.top, 2)
+                            Text("Kick Impostor")
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(Color(UIColor.systemBrown))
+                    
+                    Text("\(matchManager.kickers.count) of 4")
+                        .font(.caption)
+                        .foregroundStyle(Color(UIColor.secondaryLabel))
+                }
+                
+                Spacer()
+            }
             
             Spacer()
         }
