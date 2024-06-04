@@ -17,6 +17,9 @@
 		28105C8A2C09E3A200A308F5 /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C892C09E3A200A308F5 /* MusicManager.swift */; };
 		28105C8D2C09E3C100A308F5 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C8C2C09E3C100A308F5 /* AuthState.swift */; };
 		28853E682C0DD36800504A1E /* DeductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E672C0DD36800504A1E /* DeductView.swift */; };
+		28853E712C0F031100504A1E /* MenuBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E6E2C0F031100504A1E /* MenuBGM.mp3 */; };
+		28853E722C0F031100504A1E /* ButtonSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E6F2C0F031100504A1E /* ButtonSFX.mp3 */; };
+		28853E732C0F031100504A1E /* GameBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E702C0F031100504A1E /* GameBGM.mp3 */; };
 		3E42977E2C09D28600B91C10 /* CluelessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977D2C09D28600B91C10 /* CluelessApp.swift */; };
 		3E4297802C09D28600B91C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977F2C09D28600B91C10 /* ContentView.swift */; };
 		3E4297822C09D28700B91C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4297812C09D28700B91C10 /* Assets.xcassets */; };
@@ -36,6 +39,9 @@
 		28105C8E2C09E62100A308F5 /* Clueless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clueless.entitlements; sourceTree = "<group>"; };
 		28853E672C0DD36800504A1E /* DeductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductView.swift; sourceTree = "<group>"; };
 		28853E6D2C0EFF7100504A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		28853E6E2C0F031100504A1E /* MenuBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuBGM.mp3; sourceTree = "<group>"; };
+		28853E6F2C0F031100504A1E /* ButtonSFX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ButtonSFX.mp3; sourceTree = "<group>"; };
+		28853E702C0F031100504A1E /* GameBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameBGM.mp3; sourceTree = "<group>"; };
 		3E42977A2C09D28600B91C10 /* Clueless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clueless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E42977D2C09D28600B91C10 /* CluelessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CluelessApp.swift; sourceTree = "<group>"; };
 		3E42977F2C09D28600B91C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +111,9 @@
 		3E42977C2C09D28600B91C10 /* Clueless */ = {
 			isa = PBXGroup;
 			children = (
+				28853E6F2C0F031100504A1E /* ButtonSFX.mp3 */,
+				28853E702C0F031100504A1E /* GameBGM.mp3 */,
+				28853E6E2C0F031100504A1E /* MenuBGM.mp3 */,
 				28853E6D2C0EFF7100504A1E /* Info.plist */,
 				28105C8E2C09E62100A308F5 /* Clueless.entitlements */,
 				28105C8B2C09E3B400A308F5 /* Utils */,
@@ -183,7 +192,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28853E722C0F031100504A1E /* ButtonSFX.mp3 in Resources */,
+				28853E732C0F031100504A1E /* GameBGM.mp3 in Resources */,
 				3E4297852C09D28700B91C10 /* Preview Assets.xcassets in Resources */,
+				28853E712C0F031100504A1E /* MenuBGM.mp3 in Resources */,
 				3E4297822C09D28700B91C10 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
