@@ -34,10 +34,6 @@ struct MenuView: View {
             
             Spacer()
         }
-        .background(
-            Color(UIColor.systemBlue)
-                .scaledToFill()
-        )
         .ignoresSafeArea()
         .onAppear() {
             playBGMMusic()

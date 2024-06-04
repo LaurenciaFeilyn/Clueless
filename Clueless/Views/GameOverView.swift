@@ -15,6 +15,7 @@ struct GameOverView: View {
             Spacer()
             
             Text("Game Over!")
+                .font(.largeTitle)
             
             Spacer()
             

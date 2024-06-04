@@ -11,6 +11,7 @@ import GameKit
 class MatchManager: NSObject, ObservableObject {
     @Published var inGame = false
     @Published var isGameOver = false
+    @Published var isDeducting = false
     @Published var authState = AuthState.authenticating
     
     @Published var isTimeKeeper = false
@@ -20,13 +21,15 @@ class MatchManager: NSObject, ObservableObject {
         }
     }
     
+    @Published var canScan = true
+    @Published var scanChance = 2
+    
     var match: GKMatch?
     var players: [GKPlayer]?
     var playerIdx = 0
     var localPlayer = GKLocalPlayer.local
     
     var deductors: [String] = []
-    var kickers: [String] = []
     
     var playerUUIDKey = UUID().uuidString
     
@@ -101,24 +104,18 @@ class MatchManager: NSObject, ObservableObject {
         playerUUIDKey = UUID().uuidString
     }
     
-    func toggleDeductor() {
-        if (deductors.contains(localPlayer.gamePlayerID)) {
-            let index = deductors.firstIndex(of: localPlayer.gamePlayerID)
+    func toggleDeductor(playerID: String) {
+        if (deductors.contains(playerID)) {
+            let index = deductors.firstIndex(of: playerID)
             deductors.remove(at: index!)
         } else {
-            deductors.insert(localPlayer.gamePlayerID, at: 0)
+            deductors.insert(playerID, at: 0)
         }
-        sendString("deduct:\(localPlayer.gamePlayerID)")
-    }
-    
-    func toggleKicker() {
-        if (kickers.contains(localPlayer.gamePlayerID)) {
-            let index = kickers.firstIndex(of: localPlayer.gamePlayerID)
-            kickers.remove(at: index!)
-        } else {
-            kickers.insert(localPlayer.gamePlayerID, at: 0)
+        sendString("deduct:\(playerID)")
+        
+        if (deductors.count >= ((players!.count + 1) * 3 / 4)) {
+            isDeducting = true
         }
-        sendString("kick:\(localPlayer.gamePlayerID)")
     }
     
     func receivedString(_ message: String) {
@@ -143,20 +140,10 @@ class MatchManager: NSObject, ObservableObject {
             }
             
         case "deduct":
-            if (deductors.contains(parameter)) {
-                let index = deductors.firstIndex(of: parameter)
-                deductors.remove(at: index!)
-            } else {
-                deductors.insert(parameter, at: 0)
-            }
+            toggleDeductor(playerID: parameter)
             
-        case "kick":
-            if (kickers.contains(parameter)) {
-                let index = kickers.firstIndex(of: parameter)
-                kickers.remove(at: index!)
-            } else {
-                kickers.insert(parameter, at: 0)
-            }
+        case "finish":
+            gameOver()
             
         default:
             break

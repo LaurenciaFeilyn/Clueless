@@ -13,60 +13,87 @@ struct GameView: View {
     @ObservedObject var matchManager: MatchManager
 
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Text("Time Left : \(matchManager.remainingTime) seconds..")
-                .font(.largeTitle)
-                .padding()
-            
-            Spacer()
-            
-            HStack {
-                Spacer()
-                
+        NavigationStack {
+            GeometryReader { metrics in
                 VStack {
-                    Button {
-                        matchManager.toggleDeductor()
-                    } label: {
-                        HStack{
-                            Image(systemName: "scope")
-                                .padding(.top, 2)
-                            Text("Deduct Killer")
-                        }
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(Color(UIColor.systemBrown))
+                    Spacer()
                     
-                    Text("\(matchManager.deductors.count) of 4")
-                        .font(.caption)
-                        .foregroundStyle(Color(UIColor.secondaryLabel))
-                }
-                
-                Spacer()
-                
-                VStack {
-                    Button {
-                        matchManager.toggleKicker()
-                    } label: {
-                        HStack{
-                            Image(systemName: "figure.kickboxing")
-                                .padding(.top, 2)
-                            Text("Kick Impostor")
-                        }
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(Color(UIColor.systemBrown))
+                    Text("Time Left : \(matchManager.remainingTime) seconds..")
+                        .font(.largeTitle)
+                        .padding()
                     
-                    Text("\(matchManager.kickers.count) of 4")
-                        .font(.caption)
-                        .foregroundStyle(Color(UIColor.secondaryLabel))
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        
+                        VStack {
+                            Button {
+                                
+                            } label: {
+                                HStack{
+                                    Image(systemName: "wave.3.right")
+                                        .padding(.top, 1)
+                                    Text("Scan Clue")
+                                }
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 8)
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(Color(UIColor.systemBrown))
+                            .padding(.bottom, 4)
+                            .disabled(!matchManager.canScan)
+
+                            
+                            Text("\(matchManager.scanChance) chance(s) left")
+                                .font(.caption)
+                                .foregroundStyle(Color(UIColor.secondaryLabel))
+                        }
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Button {
+                                matchManager.toggleDeductor(playerID: matchManager.localPlayer.gamePlayerID)
+                            } label: {
+                                HStack{
+                                    Image(systemName: "scope")
+                                        .padding(.top, 1)
+                                    Text("Deduct Killer")
+                                }
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 8)
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(Color(UIColor.systemBrown))
+                            .padding(.bottom, 4)
+                            
+                            Text("\(matchManager.deductors.count) of \(matchManager.players?.count ?? 0 + 1)")
+                                .font(.caption)
+                                .foregroundStyle(Color(UIColor.secondaryLabel))
+                        }
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
             }
-            
-            Spacer()
+            .navigationTitle("Investigate")
+            .toolbar {
+                Button {
+                    
+                } label: {
+                    HStack{
+                        Image(systemName: "person.and.background.striped.horizontal")
+                            .padding(.top, 1)
+                        Text("Suspects")
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 8)
+                }
+                .tint(Color(UIColor.systemBrown))
+            }
         }
         .onReceive(countdownTimer) { _ in
             guard matchManager.isTimeKeeper else { return }
@@ -79,6 +106,9 @@ struct GameView: View {
         }
         .onAppear {
             playGameMusic()
+        }
+        .sheet(isPresented: $matchManager.isDeducting) {
+            DeductView(matchManager: matchManager)
         }
     }
 }

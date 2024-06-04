@@ -16,6 +16,7 @@
 		28105C882C09E36E00A308F5 /* MatchManager+GKLocalPlayerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C872C09E36E00A308F5 /* MatchManager+GKLocalPlayerListener.swift */; };
 		28105C8A2C09E3A200A308F5 /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C892C09E3A200A308F5 /* MusicManager.swift */; };
 		28105C8D2C09E3C100A308F5 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C8C2C09E3C100A308F5 /* AuthState.swift */; };
+		28853E682C0DD36800504A1E /* DeductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E672C0DD36800504A1E /* DeductView.swift */; };
 		3E42977E2C09D28600B91C10 /* CluelessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977D2C09D28600B91C10 /* CluelessApp.swift */; };
 		3E4297802C09D28600B91C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977F2C09D28600B91C10 /* ContentView.swift */; };
 		3E4297822C09D28700B91C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4297812C09D28700B91C10 /* Assets.xcassets */; };
@@ -33,6 +34,8 @@
 		28105C892C09E3A200A308F5 /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		28105C8C2C09E3C100A308F5 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		28105C8E2C09E62100A308F5 /* Clueless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clueless.entitlements; sourceTree = "<group>"; };
+		28853E672C0DD36800504A1E /* DeductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductView.swift; sourceTree = "<group>"; };
+		28853E6D2C0EFF7100504A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3E42977A2C09D28600B91C10 /* Clueless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clueless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E42977D2C09D28600B91C10 /* CluelessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CluelessApp.swift; sourceTree = "<group>"; };
 		3E42977F2C09D28600B91C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 				28105C7A2C09E28000A308F5 /* MenuView.swift */,
 				28105C7C2C09E2AC00A308F5 /* GameView.swift */,
 				28105C7E2C09E2C500A308F5 /* GameOverView.swift */,
+				28853E672C0DD36800504A1E /* DeductView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +105,7 @@
 		3E42977C2C09D28600B91C10 /* Clueless */ = {
 			isa = PBXGroup;
 			children = (
+				28853E6D2C0EFF7100504A1E /* Info.plist */,
 				28105C8E2C09E62100A308F5 /* Clueless.entitlements */,
 				28105C8B2C09E3B400A308F5 /* Utils */,
 				28105C802C09E2EE00A308F5 /* Managers */,
@@ -201,6 +206,7 @@
 				3E42977E2C09D28600B91C10 /* CluelessApp.swift in Sources */,
 				28105C882C09E36E00A308F5 /* MatchManager+GKLocalPlayerListener.swift in Sources */,
 				28105C8A2C09E3A200A308F5 /* MusicManager.swift in Sources */,
+				28853E682C0DD36800504A1E /* DeductView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +344,7 @@
 				DEVELOPMENT_TEAM = W3GT8HNHTS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Clueless/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Clueless;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -345,6 +352,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -374,6 +382,7 @@
 				DEVELOPMENT_TEAM = W3GT8HNHTS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Clueless/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Clueless;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -381,6 +390,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
