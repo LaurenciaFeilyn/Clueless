@@ -9,7 +9,7 @@ import SwiftUI
 
 var countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-struct GameView: View {
+struct InvestigatorView: View {
     @ObservedObject var matchManager: MatchManager
 
     var body: some View {
@@ -114,5 +114,5 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView(matchManager: MatchManager())
+    InvestigatorView(matchManager: MatchManager())
 }

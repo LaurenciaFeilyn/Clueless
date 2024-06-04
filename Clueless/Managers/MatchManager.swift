@@ -15,19 +15,23 @@ class MatchManager: NSObject, ObservableObject {
     @Published var authState = AuthState.authenticating
     
     @Published var isTimeKeeper = false
-    @Published var remainingTime = 60 {
+    @Published var remainingTime = MatchConfig.GAME_DURATION {
         willSet {
             if isTimeKeeper { sendString("timer:\(newValue)") }
         }
     }
     
     @Published var canScan = true
-    @Published var scanChance = 2
+    @Published var scanChance = MatchConfig.SCAN_CHANCE
+    
+    @Published var isSaboteur = false
+    @Published var sabotageChance = 0
     
     var match: GKMatch?
     var players: [GKPlayer]?
-    var playerIdx = 0
     var localPlayer = GKLocalPlayer.local
+    
+    var hostID: String?
     
     var deductors: [String] = []
     
@@ -66,12 +70,14 @@ class MatchManager: NSObject, ObservableObject {
     
     func startMatchmaking() {
         let request = GKMatchRequest()
-        request.minPlayers = 2
-        request.maxPlayers = 5
+        request.minPlayers = MatchConfig.MIN_PLAYERS
+        request.maxPlayers = MatchConfig.MAX_PLAYERS
         
         let matchMakingVC = GKMatchmakerViewController(matchRequest: request)
         matchMakingVC?.matchmakingMode = GKMatchmakingMode.inviteOnly
         matchMakingVC?.matchmakerDelegate = self
+        
+        hostID = localPlayer.gamePlayerID
         
         rootViewController?.present(matchMakingVC!, animated: true)
     }
@@ -82,6 +88,21 @@ class MatchManager: NSObject, ObservableObject {
         players = match?.players
         
         sendString("began:\(playerUUIDKey)")
+        
+        if localPlayer.gamePlayerID == hostID {
+            var playerIds: [String] = []
+            for p in players! {
+                playerIds.insert(p.gamePlayerID, at: 0)
+            }
+            playerIds.insert(localPlayer.gamePlayerID, at: 0)
+            
+            let saboteurId: String = playerIds.randomElement()!
+            if (saboteurId == localPlayer.gamePlayerID) {
+                isSaboteur = true
+            } else {
+                sendString("saboteur:\(saboteurId)")
+            }
+        }
     }
     
     func gameOver() {
@@ -93,17 +114,21 @@ class MatchManager: NSObject, ObservableObject {
         DispatchQueue.main.async { [self] in
             isGameOver = false
             inGame = false
-            remainingTime = 60
+            remainingTime = MatchConfig.GAME_DURATION
         }
         
         isTimeKeeper = false
         match?.delegate = nil
         match = nil
         players = nil
-        playerIdx = 0
         playerUUIDKey = UUID().uuidString
+        isDeducting = false
+        isSaboteur = false
+        sabotageChance = 0
+        canScan = true
+        scanChance = MatchConfig.SCAN_CHANCE
     }
-    
+
     func toggleDeductor(playerID: String) {
         if (deductors.contains(playerID)) {
             let index = deductors.firstIndex(of: playerID)
@@ -138,9 +163,19 @@ class MatchManager: NSObject, ObservableObject {
             if isTimeKeeper {
                 countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             }
+        
+        case "saboteur":
+            if (localPlayer.gamePlayerID.suffix(localPlayer.gamePlayerID.count - 2) == parameter) {
+                isSaboteur = true
+            }
             
         case "deduct":
             toggleDeductor(playerID: parameter)
+            
+        case "sabotage":
+            if (localPlayer.gamePlayerID.suffix(localPlayer.gamePlayerID.count - 2) == parameter) {
+                canScan = false
+            }
             
         case "finish":
             gameOver()
