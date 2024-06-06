@@ -14,10 +14,12 @@ struct ContentView: View {
         ZStack {
             if matchManager.isGameOver {
                 GameOverView(matchManager: matchManager)
-            } else if matchManager.isSaboteur {
-                SaboteurView(matchManager: matchManager)
             } else if matchManager.inGame {
-                InvestigatorView(matchManager: matchManager)
+                if matchManager.isSaboteur {
+                    SaboteurView(matchManager: matchManager)
+                } else {
+                    InvestigatorView(matchManager: matchManager)
+                }
             } else {
                 MenuView(matchManager: matchManager)
             }

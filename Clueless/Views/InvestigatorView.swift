@@ -85,8 +85,8 @@ struct InvestigatorView: View {
             }
             .navigationTitle("Investigate")
             .toolbar {
-                Button {
-                    
+                NavigationLink {
+                    SuspectsView()
                 } label: {
                     HStack{
                         Image(systemName: "person.and.background.striped.horizontal")

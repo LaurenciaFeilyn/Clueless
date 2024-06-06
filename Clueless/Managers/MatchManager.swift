@@ -57,19 +57,23 @@ class MatchManager: NSObject, ObservableObject {
         isTimeKeeper = false
         match?.delegate = nil
         match = nil
-        players = nil
         playerUUIDKey = UUID().uuidString
         isDeducting = false
         deductors = []
-        isWin = false
         isScanDisabled = false
-        isSaboteur = false
         sabotageChance = 0
         canScan = true
         scanChance = MatchConfig.SCAN_CHANCE
-        correctSuspect = nil
         doneDeductCount = 0
         correctCount = 0
+    }
+    
+    func resetRemnants() {
+        isGameOver = false
+        players = nil
+        isWin = false
+        isSaboteur = false
+        correctSuspect = nil
     }
     
     func authenticateUser() {
@@ -113,6 +117,8 @@ class MatchManager: NSObject, ObservableObject {
     }
     
     func startGame(newMatch: GKMatch) {
+        resetRemnants()
+        
         match = newMatch
         match?.delegate = self
         players = match?.players
