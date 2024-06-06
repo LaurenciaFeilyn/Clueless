@@ -17,9 +17,14 @@ struct SaboteurView: View {
                 VStack {
                     Spacer()
                     
-                    Text("Time Left : \(matchManager.remainingTime) seconds..")
-                        .font(.largeTitle)
-                        .padding()
+                    HStack {
+                        Text("\(minutesString(timer: matchManager.remainingTime))")
+                            .font(.system(size: 52, weight: .bold))
+                        Text(":")
+                            .font(.system(size: 52, weight: .bold))
+                        Text("\(secondsString(timer: matchManager.remainingTime))")
+                            .font(.system(size: 52, weight: .bold))
+                    }
                     
                     Spacer()
                     
@@ -33,7 +38,7 @@ struct SaboteurView: View {
                                 Image(uiImage: player.image)
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width:metrics.size.width * 0.30, height:metrics.size.width * 0.30)
+                                    .frame(width:metrics.size.width * 0.20, height:metrics.size.width * 0.20)
                                     .clipped()
                                     .clipShape(Circle())
                                     .padding(.bottom, 8)
@@ -78,6 +83,8 @@ struct SaboteurView: View {
                     
                     Spacer()
                 }
+                .frame(maxWidth: .infinity)
+                .background(Color(UIColor(named: "BG")!))
             }
             .navigationTitle("Sabotage")
         }

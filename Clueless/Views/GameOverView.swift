@@ -11,7 +11,7 @@ struct GameOverView: View {
     @ObservedObject var matchManager: MatchManager
     
     var body: some View {
-        VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+        VStack {
             Spacer()
             
             Text(matchManager.isWin ? "You Win" : "You Lose")
@@ -19,10 +19,10 @@ struct GameOverView: View {
             
             Spacer()
             
-            Text(matchManager.isSaboteur ? (matchManager.isWin ? "Less than \((matchManager.players?.count ?? 4) / 2) investigators deducted \(matchManager.correctSuspect?.name ?? "") as the killer..." : "More than \((matchManager.players?.count ?? 4) / 2) investigators correctly deducted \(matchManager.correctSuspect?.name ?? "") as the killer...") : (matchManager.isWin ? "You've correctly deducted \(matchManager.correctSuspect?.name ?? "") as the killer!" : "You've failed to deduct \(matchManager.correctSuspect?.name ?? "") as the killer, do better next time."))
+            Text(matchManager.isSaboteur ? (matchManager.isWin ? "Less than \(Int(ceil(Double(matchManager.players?.count ?? 4) / 2))) investigators deducted \(matchManager.correctSuspect?.name ?? "") as the killer..." : "More than \(Int(ceil(Double(matchManager.players?.count ?? 4) / 2))) investigators correctly deducted \(matchManager.correctSuspect?.name ?? "") as the killer...") : (matchManager.isWin ? "You've correctly deducted \(matchManager.correctSuspect?.name ?? "") as the killer!" : "You've failed to deduct \(matchManager.correctSuspect?.name ?? "") as the killer, do better next time."))
                 .font(.title3)
-                .padding()
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
             
             Spacer()
             
@@ -40,6 +40,8 @@ struct GameOverView: View {
             
             Spacer()
         }
+        .frame(maxWidth: .infinity)
+        .background(Color(UIColor(named: "BG")!))
     }
 }
 

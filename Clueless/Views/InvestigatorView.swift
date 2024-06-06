@@ -19,9 +19,14 @@ struct InvestigatorView: View {
                 VStack {
                     Spacer()
                     
-                    Text("Time Left : \(matchManager.remainingTime) seconds..")
-                        .font(.largeTitle)
-                        .padding()
+                    HStack {
+                        Text("\(minutesString(timer: matchManager.remainingTime))")
+                            .font(.system(size: 52, weight: .bold))
+                        Text(":")
+                            .font(.system(size: 52, weight: .bold))
+                        Text("\(secondsString(timer: matchManager.remainingTime))")
+                            .font(.system(size: 52, weight: .bold))
+                    }
                     
                     Spacer()
                     
@@ -82,6 +87,8 @@ struct InvestigatorView: View {
                     
                     Spacer()
                 }
+                .frame(maxWidth: .infinity)
+                .background(Color(UIColor(named: "BG")!))
             }
             .navigationTitle("Investigate")
             .toolbar {

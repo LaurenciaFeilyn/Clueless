@@ -140,7 +140,7 @@ class MatchManager: NSObject, ObservableObject {
                 sendString("saboteur:\(saboteurId)")
             }
             
-            let suspectIdx = Int.random(in: 0...suspectList.count)
+            let suspectIdx = Int.random(in: 0..<suspectList.count)
             correctSuspect = suspectList[suspectIdx]
             sendString("suspect:\(suspectIdx)")
             print(correctSuspect!)
@@ -223,7 +223,7 @@ class MatchManager: NSObject, ObservableObject {
             doneDeductCount += 1
             print("\(doneDeductCount) | \(players!.count)")
             if (doneDeductCount >= players!.count) {
-                if (isSaboteur && correctCount > ((players?.count ?? 4) / 2)) {
+                if (isSaboteur && correctCount > Int(ceil(Double(players?.count ?? 4) / 2))) {
                     isWin = false
                 }
                 gameOver()

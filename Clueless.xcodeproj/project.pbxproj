@@ -17,6 +17,7 @@
 		28105C8A2C09E3A200A308F5 /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C892C09E3A200A308F5 /* MusicManager.swift */; };
 		28105C8D2C09E3C100A308F5 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C8C2C09E3C100A308F5 /* AuthState.swift */; };
 		287606B02C11FB6B0045E4B6 /* SuspectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606AF2C11FB6B0045E4B6 /* SuspectDetailView.swift */; };
+		287606B32C1230FB0045E4B6 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606B22C1230FB0045E4B6 /* Timer.swift */; };
 		28853E682C0DD36800504A1E /* DeductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E672C0DD36800504A1E /* DeductView.swift */; };
 		28853E712C0F031100504A1E /* MenuBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E6E2C0F031100504A1E /* MenuBGM.mp3 */; };
 		28853E722C0F031100504A1E /* ButtonSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E6F2C0F031100504A1E /* ButtonSFX.mp3 */; };
@@ -44,6 +45,7 @@
 		28105C8C2C09E3C100A308F5 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		28105C8E2C09E62100A308F5 /* Clueless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clueless.entitlements; sourceTree = "<group>"; };
 		287606AF2C11FB6B0045E4B6 /* SuspectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspectDetailView.swift; sourceTree = "<group>"; };
+		287606B22C1230FB0045E4B6 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		28853E672C0DD36800504A1E /* DeductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductView.swift; sourceTree = "<group>"; };
 		28853E6D2C0EFF7100504A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		28853E6E2C0F031100504A1E /* MenuBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuBGM.mp3; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				28853E742C0F076800504A1E /* MatchConfig.swift */,
 				28853E782C0F2ED800504A1E /* PlayerDisplay.swift */,
 				28853E7B2C10475600504A1E /* Suspects.swift */,
+				287606B22C1230FB0045E4B6 /* Timer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				28853E7C2C10475600504A1E /* Suspects.swift in Sources */,
 				28105C862C09E35400A308F5 /* MatchManager+GKMatchDelegate.swift in Sources */,
 				28105C822C09E30600A308F5 /* MatchManager.swift in Sources */,
+				287606B32C1230FB0045E4B6 /* Timer.swift in Sources */,
 				28105C8D2C09E3C100A308F5 /* AuthState.swift in Sources */,
 				28853E772C0F097200504A1E /* SaboteurView.swift in Sources */,
 				28853E752C0F076800504A1E /* MatchConfig.swift in Sources */,
@@ -396,6 +400,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -434,6 +439,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
