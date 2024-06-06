@@ -16,6 +16,7 @@
 		28105C882C09E36E00A308F5 /* MatchManager+GKLocalPlayerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C872C09E36E00A308F5 /* MatchManager+GKLocalPlayerListener.swift */; };
 		28105C8A2C09E3A200A308F5 /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C892C09E3A200A308F5 /* MusicManager.swift */; };
 		28105C8D2C09E3C100A308F5 /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28105C8C2C09E3C100A308F5 /* AuthState.swift */; };
+		287606B02C11FB6B0045E4B6 /* SuspectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287606AF2C11FB6B0045E4B6 /* SuspectDetailView.swift */; };
 		28853E682C0DD36800504A1E /* DeductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E672C0DD36800504A1E /* DeductView.swift */; };
 		28853E712C0F031100504A1E /* MenuBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E6E2C0F031100504A1E /* MenuBGM.mp3 */; };
 		28853E722C0F031100504A1E /* ButtonSFX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28853E6F2C0F031100504A1E /* ButtonSFX.mp3 */; };
@@ -42,6 +43,7 @@
 		28105C892C09E3A200A308F5 /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		28105C8C2C09E3C100A308F5 /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		28105C8E2C09E62100A308F5 /* Clueless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clueless.entitlements; sourceTree = "<group>"; };
+		287606AF2C11FB6B0045E4B6 /* SuspectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspectDetailView.swift; sourceTree = "<group>"; };
 		28853E672C0DD36800504A1E /* DeductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeductView.swift; sourceTree = "<group>"; };
 		28853E6D2C0EFF7100504A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		28853E6E2C0F031100504A1E /* MenuBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuBGM.mp3; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				28853E672C0DD36800504A1E /* DeductView.swift */,
 				28853E762C0F097200504A1E /* SaboteurView.swift */,
 				28853E7D2C107B2F00504A1E /* SuspectsView.swift */,
+				287606AF2C11FB6B0045E4B6 /* SuspectDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28105C842C09E32800A308F5 /* MatchManager+GKMatchmakerViewControllerDelegate.swift in Sources */,
+				287606B02C11FB6B0045E4B6 /* SuspectDetailView.swift in Sources */,
 				28853E7E2C107B2F00504A1E /* SuspectsView.swift in Sources */,
 				28853E792C0F2ED800504A1E /* PlayerDisplay.swift in Sources */,
 				28105C7F2C09E2C500A308F5 /* GameOverView.swift in Sources */,

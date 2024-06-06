@@ -99,6 +99,7 @@ struct InvestigatorView: View {
                 .tint(Color(UIColor.systemBrown))
             }
         }
+        .tint(Color(UIColor(named: "BW")!))
         .onReceive(countdownTimer) { _ in
             guard matchManager.isTimeKeeper else { return }
             if matchManager.remainingTime > 0 {

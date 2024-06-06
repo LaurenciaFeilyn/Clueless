@@ -81,6 +81,7 @@ struct SaboteurView: View {
             }
             .navigationTitle("Sabotage")
         }
+        .tint(Color(UIColor.systemBrown))
         .onReceive(countdownTimer) { _ in
             guard matchManager.isTimeKeeper else { return }
             if matchManager.remainingTime > 0 {

@@ -15,7 +15,7 @@ struct SuspectsView: View {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                         ForEach(suspectList, id: \.name) { suspect in
                             NavigationLink {
-                                // DetailView(history: history)
+                                SuspectDetailView(suspect: suspect)
                             } label: {
                                 VStack {
                                     Image(suspect.image)
@@ -44,6 +44,7 @@ struct SuspectsView: View {
             .navigationTitle("Suspects")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .tint(Color(UIColor(named: "BW")!))
     }
 }
 
