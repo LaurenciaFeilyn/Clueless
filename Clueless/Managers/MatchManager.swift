@@ -50,7 +50,6 @@ class MatchManager: NSObject, ObservableObject {
     
     func resetGame() {
         DispatchQueue.main.async { [self] in
-            isGameOver = false
             inGame = false
             remainingTime = MatchConfig.GAME_DURATION
         }
@@ -145,6 +144,7 @@ class MatchManager: NSObject, ObservableObject {
     func gameOver() {
         isGameOver = true
         match?.disconnect()
+        resetGame()
     }
 
     func toggleDeductor(playerID: String, doBroadcast: Bool = false) {

@@ -27,7 +27,7 @@ struct GameOverView: View {
             Spacer()
             
             Button {
-                matchManager.resetGame()
+                matchManager.isGameOver = false
             } label: {
                 Text("Back to Menu")
                     .padding(.horizontal, 12)
