@@ -20,6 +20,7 @@ struct DeductView: View {
             VStack {
                 Text("Deduct the Killer")
                     .bold()
+                    .padding()
                 
                 GeometryReader { metrics in
                     ScrollView {
