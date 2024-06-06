@@ -12,6 +12,7 @@ class MatchManager: NSObject, ObservableObject {
     @Published var inGame = false
     @Published var isGameOver = false
     @Published var isDeducting = false
+    @Published var isWin = false
     @Published var authState = AuthState.authenticating
     
     @Published var isTimeKeeper = false
@@ -23,6 +24,7 @@ class MatchManager: NSObject, ObservableObject {
     
     @Published var canScan = true
     @Published var scanChance = MatchConfig.SCAN_CHANCE
+    @Published var isScanDisabled = false
     
     @Published var isSaboteur = false
     @Published var sabotageChance = 0
@@ -34,12 +36,41 @@ class MatchManager: NSObject, ObservableObject {
     var hostID: String?
     
     var deductors: [String] = []
+    var doneDeductCount = 0
     
     var playerUUIDKey = UUID().uuidString
+    
+    var correctSuspect: Suspect?
+    var correctCount = 0
     
     var rootViewController: UIViewController? {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         return windowScene?.windows.first?.rootViewController
+    }
+    
+    func resetGame() {
+        DispatchQueue.main.async { [self] in
+            isGameOver = false
+            inGame = false
+            remainingTime = MatchConfig.GAME_DURATION
+        }
+        
+        isTimeKeeper = false
+        match?.delegate = nil
+        match = nil
+        players = nil
+        playerUUIDKey = UUID().uuidString
+        isDeducting = false
+        deductors = []
+        isWin = false
+        isScanDisabled = false
+        isSaboteur = false
+        sabotageChance = 0
+        canScan = true
+        scanChance = MatchConfig.SCAN_CHANCE
+        correctSuspect = nil
+        doneDeductCount = 0
+        correctCount = 0
     }
     
     func authenticateUser() {
@@ -99,9 +130,15 @@ class MatchManager: NSObject, ObservableObject {
             let saboteurId: String = playerIds.randomElement()!
             if (saboteurId == localPlayer.gamePlayerID) {
                 isSaboteur = true
+                isWin = true
             } else {
                 sendString("saboteur:\(saboteurId)")
             }
+            
+            let suspectIdx = Int.random(in: 0...suspectList.count)
+            correctSuspect = suspectList[suspectIdx]
+            sendString("suspect:\(suspectIdx)")
+            print(correctSuspect!)
         }
     }
     
@@ -109,37 +146,34 @@ class MatchManager: NSObject, ObservableObject {
         isGameOver = true
         match?.disconnect()
     }
-    
-    func resetGame() {
-        DispatchQueue.main.async { [self] in
-            isGameOver = false
-            inGame = false
-            remainingTime = MatchConfig.GAME_DURATION
-        }
-        
-        isTimeKeeper = false
-        match?.delegate = nil
-        match = nil
-        players = nil
-        playerUUIDKey = UUID().uuidString
-        isDeducting = false
-        isSaboteur = false
-        sabotageChance = 0
-        canScan = true
-        scanChance = MatchConfig.SCAN_CHANCE
-    }
 
-    func toggleDeductor(playerID: String) {
+    func toggleDeductor(playerID: String, doBroadcast: Bool = false) {
         if (deductors.contains(playerID)) {
             let index = deductors.firstIndex(of: playerID)
             deductors.remove(at: index!)
         } else {
             deductors.insert(playerID, at: 0)
         }
-        sendString("deduct:\(playerID)")
         
-        if (deductors.count >= ((players!.count + 1) * 3 / 4)) {
+        if (doBroadcast) {
+            sendString("deduct-ready:\(playerID)")
+        }
+        
+        if (deductors.count >= players!.count) {
             isDeducting = true
+        }
+    }
+    
+    func deductKiller(suspect: Suspect) {
+        doneDeductCount += 1
+        if (suspect.name == correctSuspect?.name) {
+            isWin = true
+            sendString("correct:\(localPlayer.gamePlayerID)")
+        }
+        sendString("deducted:")
+        print("\(doneDeductCount) | \(players!.count)")
+        if (doneDeductCount >= players!.count) {
+            gameOver()
         }
     }
     
@@ -167,14 +201,37 @@ class MatchManager: NSObject, ObservableObject {
         case "saboteur":
             if (localPlayer.gamePlayerID.suffix(localPlayer.gamePlayerID.count - 2) == parameter) {
                 isSaboteur = true
+                isWin = true
+            }
+        
+        case "suspect":
+            print("[\(parameter)]")
+            correctSuspect = suspectList[Int(parameter) ?? 0]
+            
+        case "deduct-ready":
+            if (!isSaboteur) {
+                toggleDeductor(playerID: parameter)
             }
             
-        case "deduct":
-            toggleDeductor(playerID: parameter)
+        case "deducted":
+            doneDeductCount += 1
+            print("\(doneDeductCount) | \(players!.count)")
+            if (doneDeductCount >= players!.count) {
+                if (isSaboteur && correctCount > ((players?.count ?? 4) / 2)) {
+                    isWin = false
+                }
+                gameOver()
+            }
+            
+        case "correct":
+            if (isSaboteur) {
+                correctCount += 1
+            }
             
         case "sabotage":
             if (localPlayer.gamePlayerID.suffix(localPlayer.gamePlayerID.count - 2) == parameter) {
                 canScan = false
+                isScanDisabled = true
             }
             
         case "finish":

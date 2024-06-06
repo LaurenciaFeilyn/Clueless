@@ -23,6 +23,8 @@
 		28853E752C0F076800504A1E /* MatchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E742C0F076800504A1E /* MatchConfig.swift */; };
 		28853E772C0F097200504A1E /* SaboteurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E762C0F097200504A1E /* SaboteurView.swift */; };
 		28853E792C0F2ED800504A1E /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E782C0F2ED800504A1E /* PlayerDisplay.swift */; };
+		28853E7C2C10475600504A1E /* Suspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E7B2C10475600504A1E /* Suspects.swift */; };
+		28853E7E2C107B2F00504A1E /* SuspectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E7D2C107B2F00504A1E /* SuspectsView.swift */; };
 		3E42977E2C09D28600B91C10 /* CluelessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977D2C09D28600B91C10 /* CluelessApp.swift */; };
 		3E4297802C09D28600B91C10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977F2C09D28600B91C10 /* ContentView.swift */; };
 		3E4297822C09D28700B91C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4297812C09D28700B91C10 /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		28853E742C0F076800504A1E /* MatchConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchConfig.swift; sourceTree = "<group>"; };
 		28853E762C0F097200504A1E /* SaboteurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaboteurView.swift; sourceTree = "<group>"; };
 		28853E782C0F2ED800504A1E /* PlayerDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDisplay.swift; sourceTree = "<group>"; };
+		28853E7B2C10475600504A1E /* Suspects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suspects.swift; sourceTree = "<group>"; };
+		28853E7D2C107B2F00504A1E /* SuspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuspectsView.swift; sourceTree = "<group>"; };
 		3E42977A2C09D28600B91C10 /* Clueless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clueless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E42977D2C09D28600B91C10 /* CluelessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CluelessApp.swift; sourceTree = "<group>"; };
 		3E42977F2C09D28600B91C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 				28105C7E2C09E2C500A308F5 /* GameOverView.swift */,
 				28853E672C0DD36800504A1E /* DeductView.swift */,
 				28853E762C0F097200504A1E /* SaboteurView.swift */,
+				28853E7D2C107B2F00504A1E /* SuspectsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,6 +102,7 @@
 				28105C8C2C09E3C100A308F5 /* AuthState.swift */,
 				28853E742C0F076800504A1E /* MatchConfig.swift */,
 				28853E782C0F2ED800504A1E /* PlayerDisplay.swift */,
+				28853E7B2C10475600504A1E /* Suspects.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -225,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				28105C842C09E32800A308F5 /* MatchManager+GKMatchmakerViewControllerDelegate.swift in Sources */,
+				28853E7E2C107B2F00504A1E /* SuspectsView.swift in Sources */,
 				28853E792C0F2ED800504A1E /* PlayerDisplay.swift in Sources */,
 				28105C7F2C09E2C500A308F5 /* GameOverView.swift in Sources */,
+				28853E7C2C10475600504A1E /* Suspects.swift in Sources */,
 				28105C862C09E35400A308F5 /* MatchManager+GKMatchDelegate.swift in Sources */,
 				28105C822C09E30600A308F5 /* MatchManager.swift in Sources */,
 				28105C8D2C09E3C100A308F5 /* AuthState.swift in Sources */,

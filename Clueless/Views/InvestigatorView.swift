@@ -11,6 +11,7 @@ var countdownTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect
 
 struct InvestigatorView: View {
     @ObservedObject var matchManager: MatchManager
+    @State private var isReadyToDeduct = false
 
     var body: some View {
         NavigationStack {
@@ -36,8 +37,9 @@ struct InvestigatorView: View {
                                         .padding(.top, 1)
                                     Text("Scan Clue")
                                 }
-                                .padding(.horizontal, 24)
+                                .padding(.horizontal, 28)
                                 .padding(.vertical, 8)
+                                .font(.callout)
                             }
                             .buttonStyle(.borderedProminent)
                             .tint(Color(UIColor.systemBrown))
@@ -45,7 +47,7 @@ struct InvestigatorView: View {
                             .disabled(!matchManager.canScan)
 
                             
-                            Text("\(matchManager.scanChance) chance(s) left")
+                            Text(matchManager.canScan ? "\(matchManager.scanChance) chance(s) left" : "Your device is sabotaged..")
                                 .font(.caption)
                                 .foregroundStyle(Color(UIColor.secondaryLabel))
                         }
@@ -54,21 +56,23 @@ struct InvestigatorView: View {
                         
                         VStack {
                             Button {
-                                matchManager.toggleDeductor(playerID: matchManager.localPlayer.gamePlayerID)
+                                matchManager.toggleDeductor(playerID: matchManager.localPlayer.gamePlayerID, doBroadcast: true)
+                                isReadyToDeduct.toggle()
                             } label: {
                                 HStack{
                                     Image(systemName: "scope")
                                         .padding(.top, 1)
-                                    Text("Deduct Killer")
+                                    Text(isReadyToDeduct ? "Cancel Vote" : "Vote to Deduct")
                                 }
-                                .padding(.horizontal, 8)
+                                .padding(.horizontal, (isReadyToDeduct ? 17 : 6))
                                 .padding(.vertical, 8)
+                                .font(.callout)
                             }
-                            .buttonStyle(.bordered)
+                            .buttonStyle(.borderedProminent)
                             .tint(Color(UIColor.systemBrown))
                             .padding(.bottom, 4)
                             
-                            Text("\(matchManager.deductors.count) of \(matchManager.players?.count ?? 0 + 1)")
+                            Text("\(matchManager.deductors.count) of \(matchManager.players?.count ?? 0)")
                                 .font(.caption)
                                 .foregroundStyle(Color(UIColor.secondaryLabel))
                         }
@@ -106,6 +110,11 @@ struct InvestigatorView: View {
         }
         .onAppear {
             playGameMusic()
+        }
+        .alert("Your clue scanner device is disabled!", isPresented: $matchManager.isScanDisabled) {
+            Button("OK") {
+                matchManager.isScanDisabled = false
+            }
         }
         .sheet(isPresented: $matchManager.isDeducting) {
             DeductView(matchManager: matchManager)
