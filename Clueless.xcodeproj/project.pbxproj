@@ -27,7 +27,6 @@
 		28853E792C0F2ED800504A1E /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E782C0F2ED800504A1E /* PlayerDisplay.swift */; };
 		28853E7C2C10475600504A1E /* Suspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E7B2C10475600504A1E /* Suspects.swift */; };
 		28853E7E2C107B2F00504A1E /* SuspectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28853E7D2C107B2F00504A1E /* SuspectsView.swift */; };
-		28D9508E2C12E4130085CAF1 /* SwiftNFC in Frameworks */ = {isa = PBXBuildFile; productRef = 28D9508D2C12E4130085CAF1 /* SwiftNFC */; };
 		28D950922C13325C0085CAF1 /* MatchManager+NFCNDEFReaderSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D950912C13325C0085CAF1 /* MatchManager+NFCNDEFReaderSessionDelegate.swift */; };
 		28D950942C1336B40085CAF1 /* Clues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D950932C1336B40085CAF1 /* Clues.swift */; };
 		3E42977E2C09D28600B91C10 /* CluelessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42977D2C09D28600B91C10 /* CluelessApp.swift */; };
@@ -73,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28D9508E2C12E4130085CAF1 /* SwiftNFC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +194,6 @@
 			);
 			name = Clueless;
 			packageProductDependencies = (
-				28D9508D2C12E4130085CAF1 /* SwiftNFC */,
 			);
 			productName = Clueless;
 			productReference = 3E42977A2C09D28600B91C10 /* Clueless.app */;
@@ -227,7 +224,6 @@
 			);
 			mainGroup = 3E4297712C09D28600B91C10;
 			packageReferences = (
-				28D9508C2C12E4130085CAF1 /* XCRemoteSwiftPackageReference "SwiftNFC" */,
 			);
 			productRefGroup = 3E42977B2C09D28600B91C10 /* Products */;
 			projectDirPath = "";
@@ -423,8 +419,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,8 +460,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -506,25 +504,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		28D9508C2C12E4130085CAF1 /* XCRemoteSwiftPackageReference "SwiftNFC" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/1998code/SwiftNFC?ref=iosexample.com";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		28D9508D2C12E4130085CAF1 /* SwiftNFC */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 28D9508C2C12E4130085CAF1 /* XCRemoteSwiftPackageReference "SwiftNFC" */;
-			productName = SwiftNFC;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E4297722C09D28600B91C10 /* Project object */;
 }
