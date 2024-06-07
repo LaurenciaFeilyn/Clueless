@@ -30,12 +30,21 @@ struct InvestigatorView: View {
                     
                     Spacer()
                     
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                        ForEach(Array(matchManager.clues.enumerated()), id: \.offset) { index, clue in
+                            Text(clue)
+                        }
+                        .padding(.vertical, 8)
+                    }
+                    
+                    Spacer()
+                    
                     HStack {
                         Spacer()
                         
                         VStack {
                             Button {
-                                
+                                matchManager.readTag()
                             } label: {
                                 HStack{
                                     Image(systemName: "wave.3.right")

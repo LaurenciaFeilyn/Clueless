@@ -7,6 +7,7 @@
 
 import Foundation
 import GameKit
+import CoreNFC
 
 class MatchManager: NSObject, ObservableObject {
     @Published var inGame = false
@@ -22,12 +23,21 @@ class MatchManager: NSObject, ObservableObject {
         }
     }
     
+    // Investigator
     @Published var canScan = true
     @Published var scanChance = MatchConfig.SCAN_CHANCE
     @Published var isScanDisabled = false
+    @Published var clues: [String] = []
     
+    // Mastermind
     @Published var isSaboteur = false
     @Published var sabotageChance = 0
+    
+    // NFC
+    var session: NFCNDEFReaderSession?
+    var startAlert = "Hold your iPhone near the tag."
+    var endAlert = ""
+
     
     var match: GKMatch?
     var players: [GKPlayer]?
@@ -66,6 +76,7 @@ class MatchManager: NSObject, ObservableObject {
         scanChance = MatchConfig.SCAN_CHANCE
         doneDeductCount = 0
         correctCount = 0
+        session = nil
     }
     
     func resetRemnants() {
@@ -145,6 +156,16 @@ class MatchManager: NSObject, ObservableObject {
             sendString("suspect:\(suspectIdx)")
             print(correctSuspect!)
         }
+    }
+    
+    func readTag() {
+        guard NFCNDEFReaderSession.readingAvailable else {
+            print("Error")
+            return
+        }
+        session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
+        session?.alertMessage = startAlert
+        session?.begin()
     }
     
     func gameOver() {
