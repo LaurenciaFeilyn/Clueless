@@ -17,9 +17,26 @@ extension MatchManager: NFCNDEFReaderSessionDelegate {
                 }.joined(separator: "\n")
             }.joined(separator: " ")
             
-            self.clues.insert(scanResult, at: self.clues.count)
+            print("[\(scanResult)]")
             
-            session.alertMessage = self.endAlert != "" ? self.endAlert : "Read \(messages.count) NDEF Messages, and \(messages[0].records.count) Records."
+            var scanResponse = "You've found an invalid card."
+            if (self.isSaboteur) {
+                if (scanResult.contains("enSabo")) {
+                    if (self.sabos.contains(scanResult)) {
+                        scanResponse = "You've found this card before."
+                    } else {
+                        self.sabos.insert(scanResult, at: 0)
+                        self.sabotageChance += 1
+                        scanResponse = "You've gained 1 sabotage chance!"
+                    }
+                }
+            } else {
+                self.clues.insert(scanResult, at: self.clues.count)
+                self.scanChance -= 1
+                scanResponse = "You've found a new clue!"
+            }
+            
+            session.alertMessage = scanResponse
         }
     }
     

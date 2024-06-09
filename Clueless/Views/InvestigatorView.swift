@@ -58,7 +58,7 @@ struct InvestigatorView: View {
                             .buttonStyle(.borderedProminent)
                             .tint(Color(UIColor.systemBrown))
                             .padding(.bottom, 4)
-                            .disabled(!matchManager.canScan)
+                            .disabled(!matchManager.canScan || matchManager.scanChance <= 0)
 
                             
                             Text(matchManager.canScan ? "\(matchManager.scanChance) chance(s) left" : "Your device is sabotaged..")
