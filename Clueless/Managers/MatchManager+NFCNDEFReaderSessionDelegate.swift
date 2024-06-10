@@ -20,25 +20,25 @@ extension MatchManager: NFCNDEFReaderSessionDelegate {
             var scanResponse = "You've found an invalid card."
             switch scanResult {
                 case "Clue1":
-                    scanResponse = self.getClue(0)
+                    scanResponse = self.getClue(index: 0)
                     break
                 case "Clue2":
-                    scanResponse = self.getClue(1)
+                    scanResponse = self.getClue(index: 1)
                     break
                 case "Clue3":
-                    scanResponse = self.getClue(2)
+                    scanResponse = self.getClue(index: 2)
                     break
                 case "Clue4":
-                   scanResponse = self.getClue(3)
+                    scanResponse = self.getClue(index: 3)
                     break
                 case "Clue5":
-                    scanResponse = self.getClue(4)
+                    scanResponse = self.getClue(index: 4)
                     break
                 case "Clue6":
-                    scanResponse = self.getClue(5)
+                    scanResponse = self.getClue(index: 5)
                     break
                 case "Clue7":
-                    scanResponse = self.getClue(6)
+                    scanResponse = self.getClue(index: 6)
                     break
                 default:
                     if (self.isSaboteur) {
