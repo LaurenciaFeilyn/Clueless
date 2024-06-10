@@ -30,11 +30,48 @@ struct InvestigatorView: View {
                     
                     Spacer()
                     
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
-                        ForEach(Array(matchManager.clues.enumerated()), id: \.offset) { index, clue in
-                            Text("Clue")
+                    VStack {
+                        ZStack {
+                            Image("Cork Bulletin")
+                                .resizable()
+                                .scaledToFit()
+                                .padding()
+                            
+                            Image(matchManager.clues.count >= 1 ? matchManager.clues[0].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 120, y: 364)
+                                
+                            Image(matchManager.clues.count >= 2 ? matchManager.clues[1].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 100, y: 135)
+                            
+                            Image(matchManager.clues.count >= 3 ? matchManager.clues[2].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 310, y: 135)
+                            
+                            Image(matchManager.clues.count >= 4 ? matchManager.clues[3].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 75, y: 250)
+                            
+                            Image(matchManager.clues.count >= 5 ? matchManager.clues[4].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 320, y: 350)
+                            
+                            Image(matchManager.clues.count >= 6 ? matchManager.clues[5].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 218, y: 300)
+                            
+                            Image(matchManager.clues.count >= 7 ? matchManager.clues[6].image : "None")
+                                .resizable()
+                                .frame(width: 110, height: 130)
+                                .position(x: 210, y: 160)
                         }
-                        .padding(.vertical, 8)
                     }
                     
                     Spacer()

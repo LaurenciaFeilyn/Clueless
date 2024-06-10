@@ -17,42 +17,34 @@ extension MatchManager: NFCNDEFReaderSessionDelegate {
                 }.joined(separator: "\n")
             }.joined(separator: " ")
 
-            var scanResponse = "You've found an invalid card."
-            switch scanResult {
-                case "Clue1":
-                    scanResponse = self.getClue(index: 0)
-                    break
-                case "Clue2":
-                    scanResponse = self.getClue(index: 1)
-                    break
-                case "Clue3":
-                    scanResponse = self.getClue(index: 2)
-                    break
-                case "Clue4":
-                    scanResponse = self.getClue(index: 3)
-                    break
-                case "Clue5":
-                    scanResponse = self.getClue(index: 4)
-                    break
-                case "Clue6":
-                    scanResponse = self.getClue(index: 5)
-                    break
-                case "Clue7":
-                    scanResponse = self.getClue(index: 6)
-                    break
-                default:
-                    if (self.isSaboteur) {
-                        if (scanResult.contains("enSabo")) {
-                            if (self.sabos.contains(scanResult)) {
-                                scanResponse = "You've found this card before."
+            var scanResponse = "This is not a valid card."
+            
+            if (self.isSaboteur) {
+                if (scanResult.contains("enSabo")) {
+                    if (self.sabos.contains(scanResult)) {
+                        scanResponse = "You've found this card before."
+                    } else {
+                        self.sabos.insert(scanResult, at: 0)
+                        self.sabotageChance += 1
+                        scanResponse = "You've gained 1 sabotage chance!"
+                    }
+                }
+            } else {
+                if (scanResult.contains("enClue")) {
+                    if let range = scanResult.range(of: self.pattern, options: .regularExpression) {
+                        if let idx = Int(String(scanResult[range])) {
+                            let clueExists = self.clues.contains { $0.name == clueList[idx - 1].name }
+                            if clueExists {
+                                scanResponse = "This clue have been found before."
                             } else {
-                                self.sabos.insert(scanResult, at: 0)
-                                self.sabotageChance += 1
-                                scanResponse = "You've gained 1 sabotage chance!"
+                                self.clues.insert(clueList[idx - 1], at: self.clues.count)
+                                self.scanChance -= 1
+                                scanResponse = "You've found a new clue!"
+                                self.sendString("clue:\(idx - 1)")
                             }
                         }
                     }
-                    break
+                }
             }
             
             session.alertMessage = scanResponse
