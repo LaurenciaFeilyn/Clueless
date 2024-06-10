@@ -12,13 +12,20 @@ struct Clue {
     var image: String
 }
 
-var clueList: [Clue] = [
-    Clue(name: "Nothing", image: "Nothing"),
-    Clue(name: "Beer Can", image: "Beer Can"),
-    Clue(name: "Cigarette", image: "Cigarette"),
-    Clue(name: "Gum Wrap", image: "Gum Wrap"),
-    Clue(name: "Tie Clip", image: "Tie Clip"),
-    Clue(name: "Glasses Box", image: "Glasses Box"),
-    Clue(name: "Inhaler", image: "Inhaler"),
-    Clue(name: "Drug Box", image: "Drug Box"),
-]
+var clueList: [Clue] = [] //for NFC tags
+
+let bottle = Clue(name: "Beer Can", image: "Beer Can")
+let noBottle = Clue(name: "Nothing", image: "No Bottle")
+let cigarettes = Clue(name: "Cigarettes", image: "Cigarettes")
+let noCigarettes = Clue(name: "Nothing", image: "No Cigarettes")
+let gum = Clue(name: "Gum Wrap", image: "Gum Wrap")
+let noGum = Clue(name: "Nothing", image: "No Gum")
+let tieClip = Clue(name: "Tie Clip", image: "Tie Clip")
+let noTieClip = Clue(name: "Nothing", image: "No Tie Clip")
+let glass = Clue(name: "Glasses", image: "Glasses")
+let noGlass = Clue(name: "Nothing", image: "No Glasses")
+let inhaler = Clue(name: "Inhaler", image: "Inhaler")
+let noInhaler = Clue(name: "Nothing", image: "No Inhaler")
+let medicine = Clue(name: "Medicine", image: "Medicine")
+let noMedicine = Clue(name: "Nothing", image: "No Medicine")
+

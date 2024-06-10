@@ -17,7 +17,32 @@ extension MatchManager: NFCNDEFReaderSessionDelegate {
                 }.joined(separator: "\n")
             }.joined(separator: " ")
             
-            self.clues.insert(scanResult, at: self.clues.count)
+            switch scanResult {
+            case "Clue1":
+                self.clues.insert(clueList[0], at: self.clues.count)
+            case "Clue2":
+                self.clues.insert(clueList[1], at: self.clues.count)
+            case "Clue3":
+                self.clues.insert(clueList[2], at: self.clues.count)
+            case "Clue4":
+                self.clues.insert(clueList[3], at: self.clues.count)
+            case "Clue5":
+                self.clues.insert(clueList[4], at: self.clues.count)
+            case "Clue6":
+                self.clues.insert(clueList[5], at: self.clues.count)
+            case "Clue7":
+                self.clues.insert(clueList[6], at: self.clues.count)
+            case "Mastermind":
+                if self.isSaboteur {
+                    MatchManager().sabotageChance += 1
+                } else {
+                    break
+                }
+            default:
+                break
+            }
+            
+//            self.clues.insert(scanResult, at: self.clues.count)
             
             session.alertMessage = self.endAlert != "" ? self.endAlert : "Read \(messages.count) NDEF Messages, and \(messages[0].records.count) Records."
         }

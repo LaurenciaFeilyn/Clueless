@@ -68,7 +68,7 @@ struct SaboteurView: View {
                     Spacer()
                     
                     Button {
-                        matchManager.sabotageChance += 1
+                        matchManager.readTag()
                     } label: {
                         HStack{
                             Image(systemName: "wave.3.right")
