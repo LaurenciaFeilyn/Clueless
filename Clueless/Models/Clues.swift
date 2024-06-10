@@ -22,3 +22,4 @@ let tieClip = Clue(name: "Tie Clip", image: "Tie Clip")
 let glass = Clue(name: "Glasses", image: "Glasses")
 let inhaler = Clue(name: "Inhaler", image: "Inhaler")
 let medicine = Clue(name: "Medicine", image: "Medicine")
+
