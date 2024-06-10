@@ -29,7 +29,7 @@ struct InvestigatorView: View {
                     }
                     
                     Spacer()
-                    
+                    Image("Cork Bulletin")
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                         ForEach(Array(matchManager.clues.enumerated()), id: \.offset) { index, clue in
                             Text("Clue")

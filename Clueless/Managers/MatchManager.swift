@@ -162,33 +162,33 @@ class MatchManager: NSObject, ObservableObject {
     func assignClue() {
         switch correctSuspect?.name {
         case "Alex Miller":
-            clueList = [bottle, noCigarettes, noGum, tieClip, glass, inhaler, medicine]
+            clueList = [bottle, nothing, nothing, tieClip, glass, inhaler, medicine]
         case "Jamie Walker":
-            clueList = [noBottle, noCigarettes, gum, tieClip, glass, inhaler, medicine]
+            clueList = [nothing, nothing, gum, tieClip, glass, inhaler, medicine]
         case "Riley Thomas":
-            clueList = [bottle, cigarettes, gum, tieClip, noGlass, inhaler, noMedicine]
+            clueList = [bottle, cigarettes, gum, tieClip, nothing, inhaler, nothing]
         case "Robin Wright":
-            clueList = [bottle, cigarettes, noGum, noTieClip, glass, inhaler, medicine]
+            clueList = [bottle, cigarettes, nothing, nothing, glass, inhaler, medicine]
         case "Taylor Brooks":
-            clueList = [noBottle, cigarettes, gum, noTieClip, glass, inhaler, medicine]
+            clueList = [nothing, cigarettes, gum, nothing, glass, inhaler, medicine]
         case "Nova Lawson":
-            clueList = [noBottle, cigarettes, gum, tieClip, glass, inhaler, medicine]
+            clueList = [nothing, cigarettes, gum, tieClip, glass, inhaler, medicine]
         case "Blair Davies":
-            clueList = [bottle, cigarettes, gum, tieClip, glass, inhaler, noMedicine]
+            clueList = [bottle, cigarettes, gum, tieClip, glass, inhaler, nothing]
         case "Cameron Lee":
-            clueList = [bottle, cigarettes, gum, noTieClip, noGlass, inhaler, medicine]
+            clueList = [bottle, cigarettes, gum, nothing, nothing, inhaler, medicine]
         case "Morgan Blake":
-            clueList = [noBottle, noCigarettes, gum, tieClip, glass, inhaler, medicine]
+            clueList = [nothing, nothing, gum, tieClip, glass, inhaler, medicine]
         case "Avery Baker":
-            clueList = [bottle, cigarettes, gum, tieClip, noGlass, noInhaler, medicine]
+            clueList = [bottle, cigarettes, gum, tieClip, nothing, nothing, medicine]
         case "Dakota Quinn":
-            clueList = [noBottle, cigarettes, gum, tieClip, glass, inhaler, noMedicine]
+            clueList = [nothing, cigarettes, gum, tieClip, glass, inhaler, nothing]
         case "Skylar Moore":
-            clueList = [bottle, noCigarettes, gum, tieClip, noGlass, inhaler, medicine]
+            clueList = [bottle, nothing, gum, tieClip, nothing, inhaler, medicine]
         case "Leslie Carter":
-            clueList = [bottle, cigarettes, noGum, tieClip, glass, noInhaler, medicine]
+            clueList = [bottle, cigarettes, nothing, tieClip, glass, nothing, medicine]
         case "Rowan Gray":
-            clueList = [bottle, cigarettes, gum, noTieClip, glass, inhaler, noMedicine]
+            clueList = [bottle, cigarettes, gum, nothing, glass, inhaler, nothing]
         default: break
         }
     }
