@@ -16,35 +16,46 @@ extension MatchManager: NFCNDEFReaderSessionDelegate {
                     String(decoding: $0.payload, as: UTF8.self)
                 }.joined(separator: "\n")
             }.joined(separator: " ")
-            
+
+            var scanResponse = "You've found an invalid card."
             switch scanResult {
-            case "Clue1":
-                self.clues.insert(clueList[0], at: self.clues.count)
-            case "Clue2":
-                self.clues.insert(clueList[1], at: self.clues.count)
-            case "Clue3":
-                self.clues.insert(clueList[2], at: self.clues.count)
-            case "Clue4":
-                self.clues.insert(clueList[3], at: self.clues.count)
-            case "Clue5":
-                self.clues.insert(clueList[4], at: self.clues.count)
-            case "Clue6":
-                self.clues.insert(clueList[5], at: self.clues.count)
-            case "Clue7":
-                self.clues.insert(clueList[6], at: self.clues.count)
-            case "Mastermind":
-                if self.isSaboteur {
-                    MatchManager().sabotageChance += 1
-                } else {
+                case "Clue1":
+                    scanResponse = self.getClue(0)
                     break
-                }
-            default:
-                break
+                case "Clue2":
+                    scanResponse = self.getClue(1)
+                    break
+                case "Clue3":
+                    scanResponse = self.getClue(2)
+                    break
+                case "Clue4":
+                   scanResponse = self.getClue(3)
+                    break
+                case "Clue5":
+                    scanResponse = self.getClue(4)
+                    break
+                case "Clue6":
+                    scanResponse = self.getClue(5)
+                    break
+                case "Clue7":
+                    scanResponse = self.getClue(6)
+                    break
+                default:
+                    if (self.isSaboteur) {
+                        if (scanResult.contains("enSabo")) {
+                            if (self.sabos.contains(scanResult)) {
+                                scanResponse = "You've found this card before."
+                            } else {
+                                self.sabos.insert(scanResult, at: 0)
+                                self.sabotageChance += 1
+                                scanResponse = "You've gained 1 sabotage chance!"
+                            }
+                        }
+                    }
+                    break
             }
             
-//            self.clues.insert(scanResult, at: self.clues.count)
-            
-            session.alertMessage = self.endAlert != "" ? self.endAlert : "Read \(messages.count) NDEF Messages, and \(messages[0].records.count) Records."
+            session.alertMessage = scanResponse
         }
     }
     

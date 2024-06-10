@@ -73,7 +73,7 @@ struct SaboteurView: View {
                         HStack{
                             Image(systemName: "wave.3.right")
                                 .padding(.top, 1)
-                            Text("Scan Tag")
+                            Text("Scan Card")
                         }
                         .padding(.horizontal, 116)
                         .padding(.vertical, 8)

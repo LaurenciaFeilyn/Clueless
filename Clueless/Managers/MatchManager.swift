@@ -32,12 +32,11 @@ class MatchManager: NSObject, ObservableObject {
     // Mastermind
     @Published var isSaboteur = false
     @Published var sabotageChance = 0
+    @Published var sabos: [String] = []
     
     // NFC
     var session: NFCNDEFReaderSession?
-    var startAlert = "Hold your iPhone near the tag."
-    var endAlert = ""
-
+    var startAlert = "Hold your iPhone near the card."
     
     var match: GKMatch?
     var players: [GKPlayer]?
@@ -72,8 +71,10 @@ class MatchManager: NSObject, ObservableObject {
         deductors = []
         isScanDisabled = false
         sabotageChance = 0
+        sabos = []
         canScan = true
         scanChance = MatchConfig.SCAN_CHANCE
+        clues = []
         doneDeductCount = 0
         correctCount = 0
         session = nil
@@ -201,6 +202,12 @@ class MatchManager: NSObject, ObservableObject {
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
         session?.alertMessage = startAlert
         session?.begin()
+    }
+
+    func getClue(index: Int) -> String {
+        clues.insert(clueList[index], at: self.clues.count)
+        self.scanChance -= 1
+        return "You've found a new clue!"
     }
     
     func gameOver() {
