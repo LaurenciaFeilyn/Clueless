@@ -27,7 +27,7 @@ class MatchManager: NSObject, ObservableObject {
     @Published var canScan = true
     @Published var scanChance = MatchConfig.SCAN_CHANCE
     @Published var isScanDisabled = false
-    @Published var clues: [String] = []
+    @Published var clues: [Clue] = [] //ones that players collected
     
     // Mastermind
     @Published var isSaboteur = false
@@ -159,6 +159,41 @@ class MatchManager: NSObject, ObservableObject {
         }
     }
     
+    func assignClue() {
+        switch correctSuspect?.name {
+        case "Alex Miller":
+            clueList = [bottle, noCigarettes, noGum, tieClip, glass, inhaler, medicine]
+        case "Jamie Walker":
+            clueList = [noBottle, noCigarettes, gum, tieClip, glass, inhaler, medicine]
+        case "Riley Thomas":
+            clueList = [bottle, cigarettes, gum, tieClip, noGlass, inhaler, noMedicine]
+        case "Robin Wright":
+            clueList = [bottle, cigarettes, noGum, noTieClip, glass, inhaler, medicine]
+        case "Taylor Brooks":
+            clueList = [noBottle, cigarettes, gum, noTieClip, glass, inhaler, medicine]
+        case "Nova Lawson":
+            clueList = [noBottle, cigarettes, gum, tieClip, glass, inhaler, medicine]
+        case "Blair Davies":
+            clueList = [bottle, cigarettes, gum, tieClip, glass, inhaler, noMedicine]
+        case "Cameron Lee":
+            clueList = [bottle, cigarettes, gum, noTieClip, noGlass, inhaler, medicine]
+        case "Morgan Blake":
+            clueList = [noBottle, noCigarettes, gum, tieClip, glass, inhaler, medicine]
+        case "Avery Baker":
+            clueList = [bottle, cigarettes, gum, tieClip, noGlass, noInhaler, medicine]
+        case "Dakota Quinn":
+            clueList = [noBottle, cigarettes, gum, tieClip, glass, inhaler, noMedicine]
+        case "Skylar Moore":
+            clueList = [bottle, noCigarettes, gum, tieClip, noGlass, inhaler, medicine]
+        case "Leslie Carter":
+            clueList = [bottle, cigarettes, noGum, tieClip, glass, noInhaler, medicine]
+        case "Rowan Gray":
+            clueList = [bottle, cigarettes, gum, noTieClip, glass, inhaler, noMedicine]
+        default: break
+        }
+    }
+
+    
     func readTag() {
         guard NFCNDEFReaderSession.readingAvailable else {
             print("Error")
@@ -167,6 +202,12 @@ class MatchManager: NSObject, ObservableObject {
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
         session?.alertMessage = startAlert
         session?.begin()
+    }
+
+    func getClue(index: Int) -> String {
+        clues.insert(clueList[index], at: self.clues.count)
+        self.scanChance -= 1
+        return "You've found a new clue!"
     }
     
     func gameOver() {

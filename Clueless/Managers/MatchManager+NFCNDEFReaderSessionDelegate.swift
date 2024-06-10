@@ -16,24 +16,43 @@ extension MatchManager: NFCNDEFReaderSessionDelegate {
                     String(decoding: $0.payload, as: UTF8.self)
                 }.joined(separator: "\n")
             }.joined(separator: " ")
-            
-            print("[\(scanResult)]")
-            
+
             var scanResponse = "You've found an invalid card."
-            if (self.isSaboteur) {
-                if (scanResult.contains("enSabo")) {
-                    if (self.sabos.contains(scanResult)) {
-                        scanResponse = "You've found this card before."
-                    } else {
-                        self.sabos.insert(scanResult, at: 0)
-                        self.sabotageChance += 1
-                        scanResponse = "You've gained 1 sabotage chance!"
+            switch scanResult {
+                case "Clue1":
+                    scanResponse = self.getClue(0)
+                    break
+                case "Clue2":
+                    scanResponse = self.getClue(1)
+                    break
+                case "Clue3":
+                    scanResponse = self.getClue(2)
+                    break
+                case "Clue4":
+                   scanResponse = self.getClue(3)
+                    break
+                case "Clue5":
+                    scanResponse = self.getClue(4)
+                    break
+                case "Clue6":
+                    scanResponse = self.getClue(5)
+                    break
+                case "Clue7":
+                    scanResponse = self.getClue(6)
+                    break
+                default:
+                    if (self.isSaboteur) {
+                        if (scanResult.contains("enSabo")) {
+                            if (self.sabos.contains(scanResult)) {
+                                scanResponse = "You've found this card before."
+                            } else {
+                                self.sabos.insert(scanResult, at: 0)
+                                self.sabotageChance += 1
+                                scanResponse = "You've gained 1 sabotage chance!"
+                            }
+                        }
                     }
-                }
-            } else {
-                self.clues.insert(scanResult, at: self.clues.count)
-                self.scanChance -= 1
-                scanResponse = "You've found a new clue!"
+                    break
             }
             
             session.alertMessage = scanResponse

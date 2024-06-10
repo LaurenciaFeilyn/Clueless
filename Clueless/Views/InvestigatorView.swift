@@ -32,7 +32,7 @@ struct InvestigatorView: View {
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                         ForEach(Array(matchManager.clues.enumerated()), id: \.offset) { index, clue in
-                            Text(clue)
+                            Text("Clue")
                         }
                         .padding(.vertical, 8)
                     }
